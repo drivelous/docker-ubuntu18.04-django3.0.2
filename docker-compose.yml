@@ -4,10 +4,10 @@ services:
   web:
     build: .
     volumes:
-        - '.:/app:delegated'
+        - '.:/var/www/app:delegated'
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - ./app/:/usr/src/app/
+      - ./app/:/var/www/app/
     ports:
       - 8000:8000
     stop_signal: SIGINT

@@ -34,15 +34,17 @@ RUN cd /usr/local/bin \
     && ln -s /usr/bin/python3 python \
     && pip3 install --upgrade pip
 
-RUN mkdir /app
+RUN mkdir /var/www && mkdir /var/www/app
 
-WORKDIR /app
+WORKDIR /var/www/app
 
-COPY requirements.txt /app
+COPY requirements.txt /var/www/app
 
 RUN pip install -r requirements.txt
-RUN pip install ipython ipdb==0.9.2 gunicorn
 
 RUN apt-get clean && apt-get update && apt-get install -y locales && locale-gen en_US && locale-gen en_US.UTF-8
 
-COPY . /app
+RUN echo "HERE" && pwd
+RUN echo "HERE2" && ls
+
+# COPY . /var/www/app
