@@ -34,6 +34,8 @@ RUN cd /usr/local/bin \
     && ln -s /usr/bin/python3 python \
     && pip3 install --upgrade pip
 
+RUN apt-get clean && apt-get update && apt-get install -y locales && locale-gen en_US && locale-gen en_US.UTF-8
+
 RUN mkdir /var/www && mkdir /var/www/app
 
 WORKDIR /var/www/app
@@ -42,9 +44,4 @@ COPY requirements.txt /var/www/app
 
 RUN pip install -r requirements.txt
 
-RUN apt-get clean && apt-get update && apt-get install -y locales && locale-gen en_US && locale-gen en_US.UTF-8
-
-RUN echo "HERE" && pwd
-RUN echo "HERE2" && ls
-
-# COPY . /var/www/app
+COPY . /var/www/app
