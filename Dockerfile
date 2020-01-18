@@ -28,6 +28,10 @@ RUN cd /opt \
     && ./configure --enable-optimizations \
     && make altinstall
 
+RUN apt-get update \
+    && apt-get -y install \
+    python-psycopg2
+
 RUN apt-get -y install python3-pip
 
 RUN cd /usr/local/bin \
