@@ -19,24 +19,16 @@ RUN apt-get -y install \
     libgdbm-dev \
     libc6-dev \
     libbz2-dev \
-    libffi-dev
+    libffi-dev \
+    libpq-dev \
+    python-dev
 
 RUN cd /opt \
     && wget https://www.python.org/ftp/python/3.8.1/Python-3.8.1.tgz \
     && tar xzf Python-3.8.1.tgz \
     && cd Python-3.8.1 \
-    && ./configure --enable-optimizations \
+    && ./configure --enable-optimizations --with-ensurepip=install \
     && make altinstall
-
-RUN apt-get update \
-    && apt-get -y install \
-    python-psycopg2
-
-RUN apt-get -y install python3-pip
-
-RUN cd /usr/local/bin \
-    && ln -s /usr/bin/python3 python \
-    && pip3 install --upgrade pip
 
 RUN apt-get clean && apt-get update && apt-get install -y locales && locale-gen en_US && locale-gen en_US.UTF-8
 
@@ -46,6 +38,8 @@ WORKDIR /var/www/app
 
 COPY requirements.txt /var/www/app
 
-RUN pip install -r requirements.txt
+RUN pip3.8 install -r requirements.txt
 
 COPY . /var/www/app
+
+ENTRYPOINT ["/var/www/app/entrypoint.sh"]
