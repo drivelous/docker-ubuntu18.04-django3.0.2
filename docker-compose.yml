@@ -3,9 +3,9 @@ version: '3.3'
 services:
   web:
     build: .
+    command: python3.8 manage.py runserver 0.0.0.0:8989
     volumes:
         - '.:/var/www/app:delegated'
-    command: python3.8 manage.py runserver 0.0.0.0:8989
     volumes:
       - .:/var/www/app/
     ports:
@@ -24,7 +24,7 @@ services:
     environment:
       - POSTGRES_USER=polls_django
       - POSTGRES_PASSWORD=polls_django_password
-      - POSTGRES_DB=polls_django_dev
+      - POSTGRES_DB=polls_django_prod
 
 volumes:
   postgres_data:

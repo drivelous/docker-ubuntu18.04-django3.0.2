@@ -43,4 +43,4 @@ RUN pip3.8 install -r requirements.txt
 
 COPY . /var/www/app
 
-ENTRYPOINT ["/var/www/app/entrypoint.sh"]
+ENTRYPOINT ["/var/www/app/entrypoint.prod.sh"]
