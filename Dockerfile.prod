@@ -33,11 +33,14 @@ RUN cd /opt \
 
 RUN apt-get clean && apt-get update && apt-get install -y locales && locale-gen en_US && locale-gen en_US.UTF-8
 
-RUN mkdir /var/www && mkdir /var/www/app
+ENV HOME=/var/www
+ENV APP_HOME=/var/www/app
 
-WORKDIR /var/www/app
+RUN mkdir $HOME && mkdir $APP_HOME && mkdir $APP_HOME/staticfiles
 
-COPY requirements.txt /var/www/app
+WORKDIR $APP_HOME
+
+COPY requirements.txt $APP_HOME
 
 RUN pip3.8 install -r requirements.txt
 
