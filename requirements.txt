@@ -1,4 +1,4 @@
-django==3.0.2
+django==3.0.3
 requests
 ipython
 gunicorn==19.9.0
