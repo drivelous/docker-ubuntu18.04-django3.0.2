@@ -2,6 +2,11 @@
 
 (bumped Django to 3.0.3 for security purposes)
 
+This repo has an app with two separate docker builds for a Django 3.0.3 application running on Ubuntu 18.04, created following the Michael Herman tutorial on https://testdriven.io/blog/dockerizing-django-with-postgres-gunicorn-and-nginx/
+
+The app allows users to upload an image to a server and generates a URL to view that image. The production version uses nginx to route to a gunicorn server.
+
+
 ## DEVELOPMENT CONTAINER: To build and run this container
 Build Docker container
 
